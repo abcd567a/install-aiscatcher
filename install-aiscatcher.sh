@@ -1,20 +1,22 @@
 #!/bin/bash
 
-
-echo "Creating folder aiscatcher"
-INSTALL_FOLDER=/usr/share/aiscatcher
-sudo mkdir ${INSTALL_FOLDER}
-echo "Making AIS-catcher executeable from source-code at Github..."
 echo "Installing build tools and dependencies..."
-
 sudo apt install -y git 
 sudo apt install -y make 
 sudo apt install -y gcc 
 sudo apt install -y g++ 
 sudo apt install -y cmake 
 sudo apt install -y pkg-config 
-sudo apt install -y librtlsdr-dev
-echo "Cloning source-code of AIS-catcher and making executeable..."
+sudo apt install -y librtlsdr-dev 
+
+echo "Creating folder aiscatcher"
+INSTALL_FOLDER=/usr/share/aiscatcher
+sudo mkdir ${INSTALL_FOLDER}
+
+echo "Entering install folder..."
+cd ${INSTALL_FOLDER}
+
+echo "Cloning source-code of AIS-catcher from Github and making executeable..."
 git clone https://github.com/jvde-github/AIS-catcher.git
 cd AIS-catcher
 mkdir build
@@ -22,7 +24,7 @@ cd build
 cmake ..
 make
 echo "Creating symlink to AIS-catcher binary in folder /usr/bin/ "
-sudo ln -s ${INSTALL_FOLDER}/AIS-catcher /usr/bin/AIS-catcher
+sudo ln -s ${INSTALL_FOLDER}/build/AIS-catcher /usr/bin/AIS-catcher
 
 echo "Creating startup script file start-ais.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
@@ -34,7 +36,7 @@ echo "Writing code to startup script file start-ais.sh"
 CONFIG=""
 while read -r line; do CONFIG="\${CONFIG} \$line"; done < ${INSTALL_FOLDER}/aiscatcher.conf
 cd ${INSTALL_FOLDER}
-${INSTALL_FOLDER}/AIS-catcher \${CONFIG}
+${INSTALL_FOLDER}/build/AIS-catcher \${CONFIG}
 EOM
 sudo chmod +x ${SCRIPT_FILE}
 
