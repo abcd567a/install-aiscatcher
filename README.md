@@ -13,3 +13,31 @@
 sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-aiscatcher/master/install-aiscatcher.sh)"
 
 ```
+
+</br>
+
+### AFTER INSTALLATION IS COMPLETED, PLEASE DO FOLLOWING: </br>
+Open file aiscatcher.conf by following command: </br>
+ 
+     sudo nano /usr/share/aiscatcher/aiscatcher.conf 
+
+(1) Modify following lines:
+      -u 192.168.0.10 10101
+      -u 5.9.207.224 12345
+Replace IP and Port by your actual IP & Port
+of Map Software and Feeding Site
+
+(2) Change "-d 00000162" to the actual Serial Number of your DVBT dongle
+
+**NOTE: Do NOT leave any blank spaces between lines**
+
+Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf
+
+then restart AIS-catcher by following command:
+     sudo systemctl restart aiscatcher
+
+To see status `sudo systemctl status aiscatcher `  </br>
+To restart    `sudo systemctl restart aiscatcher ` </br>
+To stop       `sudo systemctl stop aiscatcher ` </br>
+
+</br>
