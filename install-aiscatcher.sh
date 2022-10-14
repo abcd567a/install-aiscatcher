@@ -58,12 +58,12 @@ echo "Writing code to config file aiscatcher.conf"
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
-echo "Creating User ais to run modesmixer2"
-sudo useradd --system ais
-sudo usermod -a -G plugdev ais
+echo "Creating User aiscat to run AIS-catcher"
+sudo useradd --system aiscat
+sudo usermod -a -G plugdev aiscat
 
-echo "Assigning ownership of install folder to user ais"
-sudo chown ais:ais -R ${INSTALL_FOLDER}
+echo "Assigning ownership of install folder to user aiscat"
+sudo chown aiscat:aiscat -R ${INSTALL_FOLDER}
 
 echo "Creating Service file aiscatcher.service"
 SERVICE_FILE=/lib/systemd/system/aiscatcher.service
@@ -76,7 +76,7 @@ Description=AIS-catcher
 Wants=network.target
 After=network.target
 [Service]
-User=ais
+User=aiscat
 RuntimeDirectory=aiscatcher
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${INSTALL_FOLDER}/start-ais.sh
