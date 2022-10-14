@@ -17,6 +17,9 @@ sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-ais
 </br>
 
 ### AFTER INSTALLATION IS COMPLETED, PLEASE DO FOLLOWING: </br>
+**REBOOT YOUR PI** </br>
+**REBOOT YOUR PI** </br>
+**REBOOT YOUR PI** </br></br>
 Open file aiscatcher.conf by following command: </br>
  
      sudo nano /usr/share/aiscatcher/aiscatcher.conf 
