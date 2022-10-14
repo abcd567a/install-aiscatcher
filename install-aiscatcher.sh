@@ -123,6 +123,6 @@ echo " "
 echo -e "\e[32mTo see status\e[39m sudo systemctl status aiscatcher"
 echo -e "\e[32mTo restart\e[39m    sudo systemctl restart aiscatcher"
 echo -e "\e[32mTo stop\e[39m       sudo systemctl stop aiscatcher"
-echo -e "\e[31mREBOOT RPi \e[39m"
-echo -e "\e[31mREBOOT RPi \e[39m"
+echo -e "\e[31m  REBOOT RPi \e[39m"
+echo -e "\e[31m  REBOOT RPi \e[39m"
 
