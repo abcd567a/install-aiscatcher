@@ -60,6 +60,7 @@ sudo chmod 644 ${CONFIG_FILE}
 
 echo "Creating User ais to run modesmixer2"
 sudo useradd --system ais
+sudo usermod -a -G plugdev ais
 
 echo "Assigning ownership of install folder to user ais"
 sudo chown ais:ais -R ${INSTALL_FOLDER}
