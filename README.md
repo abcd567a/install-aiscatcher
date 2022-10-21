@@ -36,7 +36,7 @@ sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-ais
   **REBOOT RPi** </br>
   **REBOOT RPi** </br>
 
-6. AFTER REBOOT, you can use following commands: </br>
+6. **AFTER REBOOT**, you can use following commands: </br>
 To see status: `sudo systemctl status aiscatcher `  </br>
 To restart:    `sudo systemctl restart aiscatcher ` </br>
 To stop:       `sudo systemctl stop aiscatcher ` </br>
