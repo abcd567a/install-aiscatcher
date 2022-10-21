@@ -49,7 +49,7 @@ echo "Writing code to config file aiscatcher.conf"
  -d 00000162
  -v 10
  -M DT
- -gr TUNER 25.4 RTLAGC off
+ -gr TUNER 38.6 RTLAGC off
  -s 2304k
  -p 3
  -o 4
