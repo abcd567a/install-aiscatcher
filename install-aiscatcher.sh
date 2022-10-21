@@ -49,13 +49,11 @@ echo "Writing code to config file aiscatcher.conf"
  -d 00000162
  -v 10
  -M DT
- -u 127.0.0.1 10110
- -u 192.168.0.10 10101
- -u 5.9.207.224 12345
  -gr TUNER 25.4 RTLAGC off
  -s 2304k
  -p 34
  -o 4
+ -u 127.0.0.1 10110
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
@@ -103,16 +101,16 @@ echo -e "\e[32m=======================\e[39m"
 echo -e "\e[32mPLEASE DO FOLLOWING:\e[39m"
 echo -e "\e[32m=======================\e[39m"
 echo -e "\e[31mREBOOT RPi \e[39m"
-echo -e "\e[33m(2) Open file aiscatcher.conf by following command:\e[39m"
-echo -e "\e[39m     sudo nano "${INSTALL_FOLDER}"/aiscatcher.conf \e[39m"
-echo ""
-echo -e "\e[33m(1) Modify following lines:\e[39m"
-echo -e "\e[39m      -u 192.168.0.10 10101  \e[39m"
-echo -e "\e[39m      -u 5.9.207.224 12345   \e[39m"
-echo -e "\e[33mReplace IP and Port by your actual IP & Port \e[39m"
-echo -e "\e[33mof Map Software and Feeding Site\e[39m"
+echo -e "\e[33mThe Map Software (AIS Dispatcher or OpenCPN) installed on RPi to be\e[39m"
+echo -e "\e[33mconfigured use UDP Port 10110, IP 127.0.0.1 OR 0.0.0.0\e[39m"
 echo ""
 echo -e "\e[33m(2) Change \"-d 00000162\" to the actual Serial Number of your DVBT dongle\e[39m"
+echo ""
+echo -e "\e[33m(2) Open file aiscatcher.conf by following command:\e[39m"
+echo -e "\e[39m     sudo nano "${INSTALL_FOLDER}"/aiscatcher.conf \e[39m"
+echo ""echo -e "\e[33m(1) For each Site you want to feed AIS data, add line:\e[39m"
+echo ""echo -e "\e[33m    immediately below last line in following format:\e[39m"
+echo -e "\e[39m      -u [URL or IP of Site] [Port Number of Site]  \e[39m"
 echo -e "\e[33mNOTE: Do NOT leave any blank spaces between lines\e[39m"
 echo ""
 echo -e "\e[33mSave (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf \e[39m"
