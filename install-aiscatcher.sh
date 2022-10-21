@@ -49,6 +49,7 @@ echo "Writing code to config file aiscatcher.conf"
  -d 00000162
  -v 10
  -M DT
+ -u 127.0.0.1 10110
  -u 192.168.0.10 10101
  -u 5.9.207.224 12345
  -gr TUNER 25.4 RTLAGC off
