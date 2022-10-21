@@ -51,7 +51,7 @@ echo "Writing code to config file aiscatcher.conf"
  -M DT
  -gr TUNER 25.4 RTLAGC off
  -s 2304k
- -p 34
+ -p 3
  -o 4
  -u 127.0.0.1 10110
 EOM
@@ -106,7 +106,7 @@ echo -e "\e[33m(2) Open file aiscatcher.conf by following command:\e[39m"
 echo -e "\e[39m       sudo nano "${INSTALL_FOLDER}"/aiscatcher.conf \e[39m"
 echo -e "\e[33m(3) In above file:\e[39m"
 echo -e "\e[33m    (a) Change 00000162 in \"-d 00000162\" to actual Serial Number of AIS dongle\e[39m"
-echo -e "\e[33m    (b) Change 34 in \"-p 34\" to the actual ppm correction figure of AIS dongle\e[39m"
+echo -e "\e[33m    (b) Change 3 in \"-p 3\" to the actual ppm correction figure of AIS dongle\e[39m"
 echo -e "\e[33m    (c) For each Site you want to feed AIS data, add a line immediately\e[39m"
 echo -e "\e[33m        below the last line, in following format:\e[39m"
 echo -e "\e[39m          -u [URL or IP of Site] [Port Number of Site]  \e[39m"
