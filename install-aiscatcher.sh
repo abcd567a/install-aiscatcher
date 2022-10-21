@@ -112,14 +112,15 @@ echo -e "\e[33m        below the last line, in following format:\e[39m"
 echo -e "\e[39m          -u [URL or IP of Site] [Port Number of Site]  \e[39m"
 echo -e "\e[33m        NOTE: Do NOT leave any blank spaces between lines\e[39m"
 echo -e "\e[33m    (d) Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf \e[39m"
-echo -e "\e[33m(4) Restart AIS-catcher by following command:\e[39m"
-echo -e "\e[39m       sudo systemctl restart aiscatcher \e[39m"
-echo " "
+
+echo -e "\e[01;31m(4) REBOOT RPi \e[39m"
+echo -e "\e[01;31m    REBOOT RPi \e[39m"
+echo -e "\e[01;31m    REBOOT RPi \e[39m"
+
+echo -e "\e[01;31m(5) AFTER REBOOT,\e[33m you can use following commands:\e[39m"
 echo -e "\e[32mTo see status\e[39m sudo systemctl status aiscatcher"
 echo -e "\e[32mTo restart\e[39m    sudo systemctl restart aiscatcher"
 echo -e "\e[32mTo stop\e[39m       sudo systemctl stop aiscatcher"
-echo -e "\e[01;31m  REBOOT RPi \e[39m"
-echo -e "\e[01;31m  REBOOT RPi \e[39m"
-echo -e "\e[01;31m  REBOOT RPi \e[39m"
+
 
 
