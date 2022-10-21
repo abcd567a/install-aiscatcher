@@ -17,30 +17,28 @@ sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-ais
 </br>
 
 ### AFTER INSTALLATION IS COMPLETED, PLEASE DO FOLLOWING: </br>
-**REBOOT YOUR PI** </br>
-**REBOOT YOUR PI** </br>
-**REBOOT YOUR PI** </br></br>
-Open file aiscatcher.conf by following command: </br>
- 
-     sudo nano /usr/share/aiscatcher/aiscatcher.conf 
+1. The Map Software installed on RPi(AIS Dispatcher or OpenCPN) should </br>
+    be configured to use UDP Port 10110, IP 127.0.0.1 OR 0.0.0.0 </br>
+    
+2. Open file aiscatcher.conf by following command: </br>
+       `sudo nano /usr/share/aiscatcher/aiscatcher.conf  ` </br>
+       
+3. In above file: </br>
+   (a) Change 00000162 in "-d 00000162" to actual Serial Number of AIS dongle </br>
+   (b) Change 34 in "-p 34" to the actual ppm correction figure of AIS dongle </br>
+   (c) For each Site you want to feed AIS data, add a line immediately </br>
+    below the last line, in following format: </br>
+      `-u [URL or IP of Site] [Port Number of Site] ` </br>
+    NOTE: Do NOT leave any blank spaces between lines </br>
+    (d) **Save (Ctrl+o)** and  Close (Ctrl+x) file aiscatcher.conf </br>
+        
+5.  **REBOOT RPi** </br>
+  **REBOOT RPi** </br>
+  **REBOOT RPi** </br>
 
-(1) Modify following lines:
-      -u 192.168.0.10 10101
-      -u 5.9.207.224 12345
-Replace IP and Port by your actual IP & Port
-of Map Software and Feeding Site
-
-(2) Change "-d 00000162" to the actual Serial Number of your DVBT dongle
-
-**NOTE: Do NOT leave any blank spaces between lines**
-
-Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf
-
-then restart AIS-catcher by following command:
-     sudo systemctl restart aiscatcher
-
-To see status `sudo systemctl status aiscatcher `  </br>
-To restart    `sudo systemctl restart aiscatcher ` </br>
-To stop       `sudo systemctl stop aiscatcher ` </br>
+6. AFTER REBOOT, you can use following commands: </br>
+To see status: `sudo systemctl status aiscatcher `  </br>
+To restart:    `sudo systemctl restart aiscatcher ` </br>
+To stop:       `sudo systemctl stop aiscatcher ` </br>
 
 </br>
