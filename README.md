@@ -8,7 +8,7 @@
 ### Command to view Log: 
 `sudo journalctl -u aiscatcher -n 20 ` </br></br>
 
-### INSTALLATION: Copy-paste following command in SSH console and press Enter key. The script will install and configure AIS-catcher.  </br>
+## INSTALLATION: Copy-paste following command in SSH console and press Enter key. The script will install AIS-catcher and it's Systemd Service.  </br>
 
 ```
 sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-aiscatcher/master/install-aiscatcher.sh)"
