@@ -62,7 +62,7 @@ Use following command to determine ppm  </br>
 
 (4) Wait until the cumulative error value (in PPM) remains more-or-less the same for three consecutive minutes. </br>
 Note the last cumulative error value (in PPM) and use it in config of AIS-catcher.</br>
-For example if the value determined by above test is 7, the entry in config file will be `-p 34` </br>
+For example if the value determined by above test is 7, the entry in config file will be `-p 7` </br>
 
 </br>
 
