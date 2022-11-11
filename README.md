@@ -112,4 +112,32 @@ For example if the value determined by above test is 7, the entry in config file
 | $17 | "to_starboard":3 |
 
 &nbsp;
+
+## To Uninstall AIS-catcher AND remove all its files
+
+**STEP-1: Stop & disable aiscatcher service, and remove aiscatcher service file.**
+
+```
+sudo systemctl stop aiscatcher  
+
+sudo systemctl disable aiscatcher  
+
+sudo rm /lib/systemd/system/aiscatcher.service  
+
+```
+
 &nbsp;
+
+**STEP-2: Remove files and folders pertaining to AIS-catcher and Biast.**
+
+```
+sudo rm -rf /usr/share/aiscatcher
+
+sudo rm /usr/local/bin/AIS-catcher
+
+sudo userdel aiscat   
+
+```
+
+&nbsp;
+
