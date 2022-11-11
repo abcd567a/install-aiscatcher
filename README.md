@@ -128,7 +128,7 @@ sudo rm /lib/systemd/system/aiscatcher.service
 
 &nbsp;
 
-**STEP-2: Remove files and folders pertaining to AIS-catcher and Biast.**
+**STEP-2: Remove files and folders pertaining to AIS-catcher.**
 
 ```
 sudo rm -rf /usr/share/aiscatcher
