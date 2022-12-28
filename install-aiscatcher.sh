@@ -118,11 +118,10 @@ echo -e "\e[33m    (e) Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf \e
 
 echo -e "\e[01;31m(4) REBOOT RPi \e[39m"
 echo -e "\e[01;31m    REBOOT RPi \e[39m"
-echo -e "\e[01;31m    REBOOT RPi \e[39m"
-
+echo " "
 echo -e "\e[01;31m(5) AFTER REBOOT,\e[33m you can :\e[39m"
-echo -e "\e[33m(1) See the Web Interface (Map etc) at IP-of-PI:8383 \e[39m"
-echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8383 \e[39m"
+echo -e "\e[33mSee the Web Interface (Map etc) at\e[39m"
+echo -e "\e[39m     $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8383 (IP-of-PI:8383) \e[39m"
 echo -e "\e[32mSee status\e[39m sudo systemctl status aiscatcher"
 echo -e "\e[32mRestart\e[39m    sudo systemctl restart aiscatcher"
 echo -e "\e[32mStop\e[39m       sudo systemctl stop aiscatcher"
