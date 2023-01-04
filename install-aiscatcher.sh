@@ -9,16 +9,20 @@ sudo apt install -y cmake
 sudo apt install -y pkg-config
 sudo apt install -y librtlsdr-dev
 
-echo "Creating folder aiscatcher"
-INSTALL_FOLDER=/usr/share/aiscatcher
-sudo mkdir ${INSTALL_FOLDER}
 
+INSTALL_FOLDER=/usr/share/aiscatcher
+echo "Saving old config file if it exists"
+sudo cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old
+
+echo "Creating folder aiscatcher if it does not exist"
+sudo mkdir ${INSTALL_FOLDER}
 echo "Entering install folder..."
 cd ${INSTALL_FOLDER}
-
 echo "Cloning source-code of AIS-catcher from Github and making executeable..."
 git clone https://github.com/jvde-github/AIS-catcher.git
 cd AIS-catcher
+git fetch --all
+git reset --hard origin/main
 mkdir build
 cd build
 cmake ..
@@ -104,6 +108,7 @@ echo -e "\e[32m=======================\e[39m"
 
 echo -e "\e[33m(1) If on RPi you have installed AIS Dispatcher or OpenCPN,\e[39m"
 echo -e "\e[33m    it should be configured to use UDP Port 10110, IP 127.0.0.1 OR 0.0.0.0\e[39m"
+
 echo -e "\e[33m(2) Open file aiscatcher.conf by following command:\e[39m"
 echo -e "\e[39m       sudo nano "${INSTALL_FOLDER}"/aiscatcher.conf \e[39m"
 echo -e "\e[33m(3) In above file:\e[39m"
@@ -115,15 +120,15 @@ echo -e "\e[35m          -N STATION MyStation LAT xx.xxx LON yy.yyy \e[39m"
 echo -e "\e[33m    (e) For each Site you want to feed AIS data, add a new line as follows:\e[39m"
 echo -e "\e[35m          -u [URL or IP of Site] [Port Number of Site]  \e[39m"
 echo -e "\e[33m    (f) Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf \e[39m"
-
-echo -e "\e[01;31m(4) REBOOT RPi \e[39m"
-echo -e "\e[01;31m    REBOOT RPi \e[39m"
+echo " "
+echo -e "\e[01;31mIMPORTANT: \e[32mIf you are \e[01;31mUpgrading or Reinstalling,\e[32myour old config file is saved as \e[39m"
+echo -e "\e[39m       "${INSTALL_FOLDER}/aiscatcher.conf.old" \e[39m"
+echo " "
+echo -e "\e[01;31m(4) REBOOT RPi ... REBOOT RPi ... REBOOT RPi \e[39m"
 echo " "
 echo -e "\e[01;32m(5) See the Web Interface (Map etc) at\e[39m"
 echo -e "\e[39m        $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8383 \e[39m" "\e[35m(IP-of-PI:8383) \e[39m"
 echo " "
 echo -e "\e[32m(6) Command to see Status\e[39m sudo systemctl status aiscatcher"
 echo -e "\e[32m(7) Command to Restart\e[39m    sudo systemctl restart aiscatcher"
-echo -e "\e[32m(8) Command to Stop\e[39m       sudo systemctl stop aiscatcher"
-
 
