@@ -28,6 +28,10 @@ cd build
 cmake ..
 make
 echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
+echo "First stop existing aiscatcher to enable over-write"
+sudo systemctl stop aiscatcher
+sudo killall AIS-catcher
+echo "Now copy new binary"
 sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
 echo "Creating startup script file start-ais.sh"
