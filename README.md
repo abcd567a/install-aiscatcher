@@ -86,7 +86,7 @@ For example if the value determined by above test is 7, the entry in config file
 `rate: 1.29752 msg/s`  </br></br>
 
 **Command:** </br>
-`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $4}'  ` </br>
+`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $14}'  ` </br>
 **Output:** </br>
 `"ppm":4.340278`  </br>
 
@@ -96,23 +96,23 @@ For example if the value determined by above test is 7, the entry in config file
 
 | $n  |  Output  Example  |
 |---|---|
-| $1 | Oct 25 12:09:56 debian11 aiscatcher[3304]: {"rxtime":"20221025160956" </br> Oct 25 12:46:20 debian11 aiscatcher[3304]: [AIS engine v0.38 ]                     received: 11 msgs |
-| $2 | "channel":"A"  </br>  total: 58298 msgs |
-| $3 | "signalpower":-47.659782 |
-| $4 | "ppm":1.736111 |
-| $5 | "type":1 |
-| $6 | "mmsi":316023269 |
-| $7 | "status":0 |
-| $8 | "status_text":"Under way using engine" |
-| $9 | "epfd":7 </br> "speed":8.100000 </br> "turn":0|
-| $10 |  "accuracy":true </br> "shipname":"M.V. RIVER GAMBLER"  </br> "speed":12.800000 |
-| $11 | "lon":-79.396454 </br> "accuracy":true  |  
-| $12 | "lat":43.635452 |
-| $13 | "course":52.500000} |
-| $14 | "course":256.600006 |
-| $15 | "heading":257} |
-| $16 | "to_port":21 |
-| $17 | "to_starboard":3 |
+| $1 | Jan 05 04:48:16 debian11 aiscatcher[38575]: [AIS engine v0.42 #0] </br>    received: 16 msgs </br> Jan 05 04:48:17 debian11 aiscatcher[38575]: {"class":"AIS"|
+| $2 | "device":"AIS-catcher" |
+| $3 | "rxtime":"20230105095333" |
+| $4 | "scaled":true |
+| $5 | "channel":"A" </br> "channel":"B" |
+| $6 | "nmea":["!AIVDM |
+| $7 | 3 |
+| $8 | 1 |
+| $9 | 4|
+| $10 |  A </br> B |
+| $11 | 14eIvM6P00rDSONHv0pf4?vR2@:2 </br> 8h30ot1?0@<BbDPPPP3D<oPPEU;M418T@00BbDPPPPC=DoN0lU:2WQ8v  |  
+| $12 | 2*5C"] </br> 0*02"] |
+| $13 | "signalpower":-41.644276 |
+| $14 | "ppm":-3.761574 |
+| $15 | "mmsi":316206000 |
+| $16 | "status":5 |
+| $17 | "status_text":"Aground" </br> "status_text":"Under way using engine" |
 
 &nbsp;
 
