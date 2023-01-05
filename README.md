@@ -78,17 +78,22 @@ For example if the value determined by above test is 7, the entry in config file
 **Command:**  </br>
 `sudo journalctl -u aiscatcher -n 200 | grep -o 'received.*'  ` </br>
 **Output:** </br>
-`received: 12 msgs, total: 59754 msgs, rate: 1.19834 msg/s ` </br> </br>
+`received: 12 msgs, total: 59754 msgs, rate: 1.19834 msg/s ` </br> 
 
 **Command:**  </br>
 `sudo journalctl -u aiscatcher -n 200 | grep -o 'rate.*'  ` </br>
 **Output:** </br>
-`rate: 1.29752 msg/s`  </br></br>
+`rate: 1.29752 msg/s`  </br>
 
 **Command:** </br>
 `sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $14}'  ` </br>
 **Output:** </br>
 `"ppm":4.340278`  </br>
+
+**Command:** </br>
+`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $13}'  ` </br>
+**Output:** </br>
+`"signalpower":-46.787212`  </br>
 
 ### In above command's last part, i.e. in `{print $4}`, substitute `$4` by values listed in first column of the table below to get the output shown in second column of the table.
 
