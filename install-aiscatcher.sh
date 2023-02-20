@@ -21,6 +21,7 @@ cd ${INSTALL_FOLDER}
 echo "Cloning source-code of AIS-catcher from Github and making executeable..."
 git clone https://github.com/jvde-github/AIS-catcher.git
 cd AIS-catcher
+sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
 git fetch --all
 git reset --hard origin/main
 mkdir build
