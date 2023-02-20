@@ -34,6 +34,9 @@ sudo killall AIS-catcher
 echo "Now copy new binary"
 sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
+echo "Creating symlink to folder plugins if symlink does not exist"
+sudo ln -sf ${INSTALL_FOLDER}/AIS-catcher/plugins ${INSTALL_FOLDER}/
+
 echo "Creating startup script file start-ais.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
 sudo touch ${SCRIPT_FILE}
