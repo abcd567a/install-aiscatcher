@@ -15,19 +15,19 @@ echo "Saving old config file if it exists"
 sudo cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old
 
 echo "Creating folder aiscatcher if it does not exist"
-sudo mkdir ${INSTALL_FOLDER}
+sudo mkdir -p ${INSTALL_FOLDER}
 echo "Entering install folder..."
 cd ${INSTALL_FOLDER}
 echo "Cloning source-code of AIS-catcher from Github and making executeable..."
-git clone https://github.com/jvde-github/AIS-catcher.git
+sudo git clone https://github.com/jvde-github/AIS-catcher.git
 cd AIS-catcher
 sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
-git fetch --all
-git reset --hard origin/main
-mkdir build
+sudo git fetch --all
+sudo git reset --hard origin/main
+sudo mkdir -p build
 cd build
-cmake ..
-make
+sudo cmake ..
+sudo make
 echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
 echo "First stop existing aiscatcher to enable over-write"
 sudo systemctl stop aiscatcher
