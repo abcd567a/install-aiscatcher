@@ -24,6 +24,24 @@ sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-ais
 (2) Open file aiscatcher.conf by following command: </br>
        sudo nano /usr/share/aiscatcher/aiscatcher.conf </br>
 
+The defalt content of above file are as shown below:  </br>
+
+```
+ -d 00000162
+ -v 10
+ -M DT
+ -gr TUNER 38.6 RTLAGC off
+ -s 2304k
+ -p 3
+ -o 4
+ -u 127.0.0.1 10110
+ -N 8383
+ -N PLUGIN_DIR /usr/share/aiscatcher/plugins
+
+```
+
+</br>
+
 (3) In above file: </br>
      (a) Change 00000162 in "-d 00000162" to actual Serial Number of AIS dongle </br>
      (b) Change 3 in "-p 3" to the actual ppm correction figure of dongle </br>
