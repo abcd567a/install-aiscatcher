@@ -22,7 +22,12 @@ sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/install-ais
     it should be configured to use UDP Port 10110, IP 127.0.0.1 OR 0.0.0.0 </br>
 
 (2) Open file aiscatcher.conf by following command: </br>
-       sudo nano /usr/share/aiscatcher/aiscatcher.conf </br>
+
+``` 
+sudo nano /usr/share/aiscatcher/aiscatcher.conf     
+
+```
+ </br>
 
 The defalt content of above file are as shown below:  </br>
 
