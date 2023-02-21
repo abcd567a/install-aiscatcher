@@ -67,6 +67,7 @@ echo "Writing code to config file aiscatcher.conf"
  -o 4
  -u 127.0.0.1 10110
  -N 8383
+ -N PLUGIN_DIR /usr/share/aiscatcher/plugins
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
