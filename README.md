@@ -41,7 +41,7 @@ The defalt content of above file are as shown below:  </br>
  -o 4
  -u 127.0.0.1 10110
  -N 8383
- -N PLUGIN_DIR /usr/share/aiscatcher/plugins   
+ -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins   
 
 ```
 
