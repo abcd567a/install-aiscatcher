@@ -35,8 +35,15 @@ sudo killall AIS-catcher
 echo "Now copy new binary"
 sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
-echo "Creating symlink to folder plugins if symlink does not exist"
-sudo ln -sf ${INSTALL_FOLDER}/AIS-catcher/plugins ${INSTALL_FOLDER}/
+echo "Deleting Symlink \"plugins\" if it exists"
+sudo rm ${INSTALL_FOLDER}/plugins
+echo "Renaming existing folder \"my-plugins\" to \"my-plugins.old\" "
+sudo rm -rf ${INSTALL_FOLDER}/my-plugins.old
+sudo mv ${INSTALL_FOLDER}/my-plugins ${INSTALL_FOLDER}/my-plugins.old
+echo "Copying files from Source code folder \"AIS-catcher/plugins\" to folder \"my-plugins\" "
+sudo mkdir ${INSTALL_FOLDER}/my-plugins
+sudo cp ${INSTALL_FOLDER}/AIS-catcher/plugins/* ${INSTALL_FOLDER}/my-plugins/
+
 
 echo "Creating startup script file start-ais.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
@@ -67,7 +74,7 @@ echo "Writing code to config file aiscatcher.conf"
  -o 4
  -u 127.0.0.1 10110
  -N 8383
- -N PLUGIN_DIR /usr/share/aiscatcher/plugins
+ -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
