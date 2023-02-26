@@ -105,19 +105,26 @@ cd AIS-catcher
 sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
 sudo git fetch --all
 sudo git reset --hard origin/main
+sudo rm -rf build
 sudo mkdir -p build
 cd build
 sudo cmake ..
 sudo make
 echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
-echo "First stop existing aiscatcher to enable over-write"
-sudo systemctl stop aiscatcher
-sudo killall AIS-catcher
-echo "Now copy new binary"
-sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
+if [[ -f "${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher" ]]; then
+   echo "Stoping existing aiscatcher to enable over-write"
+   sudo systemctl stop aiscatcher
+   sudo killall AIS-catcher
+   echo "Copying newly built binary \"AIS-catcher\" to folder \"/usr/local/bin/\" "
+   sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
-echo "Deleting Symlink \"plugins\" if it exists"
-sudo rm ${INSTALL_FOLDER}/plugins
+elif [[ ! -f "${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher" ]]; then
+   echo " "
+   echo -e "\e[1;31mAIS binary was not built\e[39m"
+   echo -e "\e[1;31mPlease run install script again\e[39m"
+   exit
+fi
+
 echo "Renaming existing folder \"my-plugins\" to \"my-plugins.old\" "
 sudo rm -rf ${INSTALL_FOLDER}/my-plugins.old
 sudo mv ${INSTALL_FOLDER}/my-plugins ${INSTALL_FOLDER}/my-plugins.old
