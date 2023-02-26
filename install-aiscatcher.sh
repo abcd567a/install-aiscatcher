@@ -11,54 +11,10 @@ sudo apt install -y librtlsdr-dev
 
 
 INSTALL_FOLDER=/usr/share/aiscatcher
-echo "Saving old config file if it exists"
-sudo cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old
-
 echo "Creating folder aiscatcher if it does not exist"
 sudo mkdir -p ${INSTALL_FOLDER}
-echo "Entering install folder..."
-cd ${INSTALL_FOLDER}
-echo "Cloning source-code of AIS-catcher from Github and making executeable..."
-sudo git clone https://github.com/jvde-github/AIS-catcher.git
-cd AIS-catcher
-sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
-sudo git fetch --all
-sudo git reset --hard origin/main
-sudo mkdir -p build
-cd build
-sudo cmake ..
-sudo make
-echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
-echo "First stop existing aiscatcher to enable over-write"
-sudo systemctl stop aiscatcher
-sudo killall AIS-catcher
-echo "Now copy new binary"
-sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
-echo "Deleting Symlink \"plugins\" if it exists"
-sudo rm ${INSTALL_FOLDER}/plugins
-echo "Renaming existing folder \"my-plugins\" to \"my-plugins.old\" "
-sudo rm -rf ${INSTALL_FOLDER}/my-plugins.old
-sudo mv ${INSTALL_FOLDER}/my-plugins ${INSTALL_FOLDER}/my-plugins.old
-echo "Copying files from Source code folder \"AIS-catcher/plugins\" to folder \"my-plugins\" "
-sudo mkdir ${INSTALL_FOLDER}/my-plugins
-sudo cp ${INSTALL_FOLDER}/AIS-catcher/plugins/* ${INSTALL_FOLDER}/my-plugins/
-
-
-echo "Creating startup script file start-ais.sh"
-SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
-sudo touch ${SCRIPT_FILE}
-sudo chmod 777 ${SCRIPT_FILE}
-echo "Writing code to startup script file start-ais.sh"
-/bin/cat <<EOM >${SCRIPT_FILE}
-#!/bin/sh
-CONFIG=""
-while read -r line; do CONFIG="\${CONFIG} \$line"; done < ${INSTALL_FOLDER}/aiscatcher.conf
-cd ${INSTALL_FOLDER}
-/usr/local/bin/AIS-catcher \${CONFIG}
-EOM
-sudo chmod +x ${SCRIPT_FILE}
-
+function create-config(){
 echo "Creating config file aiscatcher.conf"
 CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf
 sudo touch ${CONFIG_FILE}
@@ -77,13 +33,41 @@ echo "Writing code to config file aiscatcher.conf"
  -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 EOM
 sudo chmod 644 ${CONFIG_FILE}
+}
 
-echo "Creating User aiscat to run AIS-catcher"
-sudo useradd --system aiscat
-sudo usermod -a -G plugdev aiscat
 
-echo "Assigning ownership of install folder to user aiscat"
-sudo chown aiscat:aiscat -R ${INSTALL_FOLDER}
+if [[ -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
+   CHOICE=$(sudo whiptail --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 60 5 \
+   "1" "KEEP existing config file \"aiscatcher.conf\" " \
+   "2" "REPLACE existing config file by default config file" 3>&1 1>&2 2>&3);
+   echo ${CHOICE}
+   if [[ ${CHOICE} == "2" ]]; then
+      if (whiptail --title "Confirmation" --yesno "Are you sure you want to REPLACE your existing config file by default config File?" --defaultno 10 60 5 ); then
+        echo "Saving old config file as \"aiscatcher.conf.old\" ";
+        sudo cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old;
+        create-config
+      fi
+   fi
+
+elif [[ ! -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
+   create-config
+   echo "what the hell"
+fi
+
+echo "Creating startup script file start-ais.sh"
+SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
+sudo touch ${SCRIPT_FILE}
+sudo chmod 777 ${SCRIPT_FILE}
+echo "Writing code to startup script file start-ais.sh"
+/bin/cat <<EOM >${SCRIPT_FILE}
+#!/bin/sh
+CONFIG=""
+while read -r line; do CONFIG="\${CONFIG} \$line"; done < ${INSTALL_FOLDER}/aiscatcher.conf
+cd ${INSTALL_FOLDER}
+/usr/local/bin/AIS-catcher \${CONFIG}
+EOM
+sudo chmod +x ${SCRIPT_FILE}
+
 
 echo "Creating Service file aiscatcher.service"
 SERVICE_FILE=/lib/systemd/system/aiscatcher.service
@@ -113,7 +97,44 @@ EOM
 
 sudo chmod 644 ${SERVICE_FILE}
 sudo systemctl enable aiscatcher
-sudo systemctl restart aiscatcher
+
+
+echo "Entering install folder..."
+cd ${INSTALL_FOLDER}
+echo "Cloning source-code of AIS-catcher from Github and making executeable..."
+sudo git clone https://github.com/jvde-github/AIS-catcher.git
+cd AIS-catcher
+sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
+sudo git fetch --all
+sudo git reset --hard origin/main
+sudo mkdir -p build
+cd build
+sudo cmake ..
+sudo make
+echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
+echo "First stop existing aiscatcher to enable over-write"
+sudo systemctl stop aiscatcher
+sudo killall AIS-catcher
+echo "Now copy new binary"
+sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
+
+echo "Deleting Symlink \"plugins\" if it exists"
+sudo rm ${INSTALL_FOLDER}/plugins
+echo "Renaming existing folder \"my-plugins\" to \"my-plugins.old\" "
+sudo rm -rf ${INSTALL_FOLDER}/my-plugins.old
+sudo mv ${INSTALL_FOLDER}/my-plugins ${INSTALL_FOLDER}/my-plugins.old
+echo "Copying files from Source code folder \"AIS-catcher/plugins\" to folder \"my-plugins\" "
+sudo mkdir ${INSTALL_FOLDER}/my-plugins
+sudo cp ${INSTALL_FOLDER}/AIS-catcher/plugins/* ${INSTALL_FOLDER}/my-plugins/
+
+echo "Creating User aiscat to run AIS-catcher"
+sudo useradd --system aiscat
+sudo usermod -a -G plugdev aiscat
+
+echo "Assigning ownership of install folder to user aiscat"
+sudo chown aiscat:aiscat -R ${INSTALL_FOLDER}
+
+sudo systemctl start aiscatcher
 
 echo " "
 echo " "
