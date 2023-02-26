@@ -8,7 +8,7 @@ sudo apt install -y g++
 sudo apt install -y cmake
 sudo apt install -y pkg-config
 sudo apt install -y librtlsdr-dev
-
+sudo apt install -y whiptail
 
 INSTALL_FOLDER=/usr/share/aiscatcher
 echo "Creating folder aiscatcher if it does not exist"
