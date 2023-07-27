@@ -39,8 +39,8 @@ sudo chmod 644 ${CONFIG_FILE}
 
 
 if [[ -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
-   ##CHOICE=$(sudo whiptail --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 60 5 \
-   CHOICE=$(sudo dialog --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 60 5 \
+   ##CHOICE=$(sudo whiptail --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 70 5 \
+   CHOICE=$(sudo dialog --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 70 5 \
    "1" "KEEP existing config file \"aiscatcher.conf\" " \
    "2" "REPLACE existing config file by default config file" 3>&1 1>&2 2>&3);
    if [[ ${CHOICE} == "2" ]]; then
