@@ -8,7 +8,7 @@ sudo apt install -y g++
 sudo apt install -y cmake
 sudo apt install -y pkg-config
 sudo apt install -y librtlsdr-dev
-##sudo apt install -y whiptail
+sudo apt install -y whiptail
 sudo apt install -y dialog
 sudo apt install -y libpq-dev
 
