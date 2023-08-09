@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -e
+trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
+
 echo "Installing build tools and dependencies..."
 sudo apt install -y git
 sudo apt install -y make
@@ -100,13 +103,28 @@ sudo systemctl enable aiscatcher
 
 echo "Entering install folder..."
 cd ${INSTALL_FOLDER}
-echo "Cloning source-code of AIS-catcher from Github and making executeable..."
+
+if [[ -d AIS-catcher ]];
+then
+echo -e "\e[36mcode exists \e[39m"
+
+else
+echo -e "\e[36mCloning source-code of AIS-catcher from Github \e[39m"
 sudo git clone https://github.com/jvde-github/AIS-catcher.git
+fi
+
+echo -e "\e[36mUpdating code \e[39m"
 cd AIS-catcher
 sudo git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
 sudo git fetch --all
 sudo git reset --hard origin/main
-sudo rm -rf build
+
+if [[ -d build ]];
+then
+rm -rf build
+fi
+
+echo -e "\e[36mMaking executable binary \e[39m"
 sudo mkdir -p build
 cd build
 sudo cmake ..
@@ -115,7 +133,9 @@ echo "Copying AIS-catcher binary in folder /usr/local/bin/ "
 if [[ -f "${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher" ]]; then
    echo "Stoping existing aiscatcher to enable over-write"
    sudo systemctl stop aiscatcher
+   if [[ `pgrep AIS-catcher` ]]; then 
    sudo killall AIS-catcher
+   fi
    echo "Copying newly built binary \"AIS-catcher\" to folder \"/usr/local/bin/\" "
    sudo cp ${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher /usr/local/bin/AIS-catcher
 
@@ -127,8 +147,15 @@ elif [[ ! -f "${INSTALL_FOLDER}/AIS-catcher/build/AIS-catcher" ]]; then
 fi
 
 echo "Renaming existing folder \"my-plugins\" to \"my-plugins.old\" "
+if [[ -d ${INSTALL_FOLDER}/my-plugins.old ]];
+then
 sudo rm -rf ${INSTALL_FOLDER}/my-plugins.old
+fi
+
+if [[ -d ${INSTALL_FOLDER}/my-plugins ]];
+then
 sudo mv ${INSTALL_FOLDER}/my-plugins ${INSTALL_FOLDER}/my-plugins.old
+fi
 echo "Copying files from Source code folder \"AIS-catcher/plugins\" to folder \"my-plugins\" "
 sudo mkdir ${INSTALL_FOLDER}/my-plugins
 sudo cp ${INSTALL_FOLDER}/AIS-catcher/plugins/* ${INSTALL_FOLDER}/my-plugins/
