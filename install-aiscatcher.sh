@@ -13,6 +13,8 @@ apt install -y pkg-config
 apt install -y librtlsdr-dev
 apt install -y whiptail
 apt install -y libpq-dev
+apt install -y libcurl4-openssl-dev 
+apt install -y zlib1g-dev
 
 INSTALL_FOLDER=/usr/share/aiscatcher
 echo "Creating folder aiscatcher if it does not exist"
