@@ -4,17 +4,19 @@ set -e
 trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
 
 echo "Installing build tools and dependencies..."
-apt install -y git
-apt install -y make
-apt install -y gcc
-apt install -y g++
-apt install -y cmake
-apt install -y pkg-config
-apt install -y librtlsdr-dev
-apt install -y whiptail
-apt install -y libpq-dev
-apt install -y libcurl4-openssl-dev 
-apt install -y zlib1g-dev
+apt install -y \
+git \
+make \
+gcc \
+g++ \
+cmake \
+pkg-config \
+librtlsdr-dev \
+whiptail \
+libpq-dev \
+libssl-dev \
+zlib1g-dev
+
 
 INSTALL_FOLDER=/usr/share/aiscatcher
 echo "Creating folder aiscatcher if it does not exist"
