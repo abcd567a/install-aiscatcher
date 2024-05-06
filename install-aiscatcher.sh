@@ -29,12 +29,12 @@ touch ${CONFIG_FILE}
 chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file aiscatcher.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
--d 00000162  #dongle serial
+-d 00000162  ##dongle serial
 -v 10
 -M DT
--gr TUNER 38.6 RTLAGC off #dongle gain
+-gr TUNER 38.6 RTLAGC off  ##dongle gain
 -s 2304k
--p 3  #dongle temprature correction, ppm
+-p 3  ##dongle temprature correction, ppm
 -o 4
 -u 127.0.0.1 10110
 ## add below url & port number of sites to be fed
