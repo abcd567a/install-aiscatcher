@@ -81,7 +81,7 @@ while read -r line;
       fi
    done < /usr/share/aiscatcher/aiscatcher.conf
 cd /usr/share/aiscatcher
-/usr/local/bin/AIS-catcher ${CONFIG}
+/usr/local/bin/AIS-catcher \${CONFIG}
 EOM
 chmod +x ${SCRIPT_FILE}
 
