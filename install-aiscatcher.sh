@@ -74,10 +74,10 @@ a=""
 b=""
 while read -r line;
    do
-      a="$line";
-      b="${a%%#*}";
-      if [[ -n "${b}" ]]; then
-        CONFIG="${CONFIG} ${b}";
+      a="\$line";
+      b="\${a%%#*}";
+      if [[ -n "\${b}" ]]; then
+        CONFIG="\${CONFIG} \${b}";
       fi
    done < /usr/share/aiscatcher/aiscatcher.conf
 cd /usr/share/aiscatcher
