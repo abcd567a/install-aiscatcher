@@ -29,16 +29,18 @@ touch ${CONFIG_FILE}
 chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file aiscatcher.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
- -d 00000162
- -v 10
- -M DT
- -gr TUNER 38.6 RTLAGC off
- -s 2304k
- -p 3
- -o 4
- -u 127.0.0.1 10110
- -N 8383
- -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
+-d 00000162  #dongle serial
+-v 10
+-M DT
+-gr TUNER 38.6 RTLAGC off #dongle gain
+-s 2304k
+-p 3  #dongle temprature correction, ppm
+-o 4
+-u 127.0.0.1 10110
+## add below url & port number of sites to be fed
+## one site per line
+-N 8383  #port number to display map in browser
+-N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 EOM
 chmod 644 ${CONFIG_FILE}
 }
@@ -68,9 +70,18 @@ echo "Writing code to startup script file start-ais.sh"
 /bin/cat <<EOM >${SCRIPT_FILE}
 #!/bin/sh
 CONFIG=""
-while read -r line; do CONFIG="\${CONFIG} \$line"; done < ${INSTALL_FOLDER}/aiscatcher.conf
-cd ${INSTALL_FOLDER}
-/usr/local/bin/AIS-catcher \${CONFIG}
+a=""
+b=""
+while read -r line;
+   do
+      a="$line";
+      b="${a%%#*}";
+      if [[ -n "${b}" ]]; then
+        CONFIG="${CONFIG} ${b}";
+      fi
+   done < /usr/share/aiscatcher/aiscatcher.conf
+cd /usr/share/aiscatcher
+/usr/local/bin/AIS-catcher ${CONFIG}
 EOM
 chmod +x ${SCRIPT_FILE}
 
