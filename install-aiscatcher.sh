@@ -29,18 +29,26 @@ touch ${CONFIG_FILE}
 chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file aiscatcher.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
--d 00000162  ##dongle serial
+-d 00000162  ##Dongle serial Number
 -v 10
 -M DT
--gr TUNER 38.6 RTLAGC off  ##dongle gain
+-gr TUNER 38.6 RTLAGC off  ##Dongle gain
 -s 2304k
--p 3  ##dongle temprature correction, ppm
+-p 3  ##Dongle temprature correction, ppm
 -o 4
--u 127.0.0.1 10110
+-S 10120  ##TCP Server listening on port 10120
+-u 127.0.0.1 10110  ##UDP connection to local app at port 10110
+-N 8383  ##Port number to display map in browser
 ## add below url & port number of sites to be fed
-## one site per line
--N 8383  #port number to display map in browser
+## one site per line, as in examples below (xxxx is port number)
+## -u data.aishub.net xxxx 
+## -u hub.shipxplorer.com xxxx
+
+## add below your station name, latitudw, and latitude in format given below
+## -N STATION [NAME} LAT xx.xxx LON yy.yyyy
+
 -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
+
 EOM
 chmod 644 ${CONFIG_FILE}
 }
