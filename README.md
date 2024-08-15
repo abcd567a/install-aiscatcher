@@ -109,12 +109,12 @@ For example if the value determined by above test is 7, the entry in config file
 `rate: 1.29752 msg/s`  </br>
 
 **Command:** </br>
-`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $14}'  ` </br>
+`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $17}'  ` </br>
 **Output:** </br>
 `"ppm":4.340278`  </br>
 
 **Command:** </br>
-`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $13}'  ` </br>
+`sudo journalctl -u aiscatcher -n 30 | awk -F',' '{print $16}'  ` </br>
 **Output:** </br>
 `"signalpower":-46.787212`  </br>
 
