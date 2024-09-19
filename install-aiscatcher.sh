@@ -20,7 +20,13 @@ zlib1g-dev
 
 INSTALL_FOLDER=/usr/share/aiscatcher
 echo "Creating folder aiscatcher if it does not exist"
+if [[ -d ${INSTALL_FOLDER} ]];
+then
+echo -e "\e[32mInstall Folder exists \e[39m"
+else
 mkdir -p ${INSTALL_FOLDER}
+fi
+
 
 function create-config(){
 echo "Creating config file aiscatcher.conf"
@@ -38,15 +44,19 @@ echo "Writing code to config file aiscatcher.conf"
 -o 4
 -S 10120  ##TCP Server listening on port 10120
 -u 127.0.0.1 10110  ##UDP connection to local app at port 10110
--N 8383  ##Port number to display map in browser
-## add below url & port number of sites to be fed
+## Map in Browser will be displayed on port number set below
+-N 8383 geojson on  
+ CDN /usr/share/aiscatcher/webassets 
+## Replace below 51.50 and -1.00 by actual values at your location
+ LAT 51.50 LON -1.00 SHARE_LOC ON 
+
+## Add below url & port number of sites to be fed
 ## one site per line, as in examples below (xxxx is port number)
 ## -u data.aishub.net xxxx 
 ## -u hub.shipxplorer.com xxxx
 
-## add below your station name, latitudw, and latitude in format given below
-## -N STATION [NAME} LAT xx.xxx LON yy.yyyy
-
+## Below replace MY-STATION by your station's desired name
+-N STATION MY-STATION
 -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
 EOM
@@ -127,16 +137,37 @@ systemctl enable aiscatcher
 echo "Entering install folder..."
 cd ${INSTALL_FOLDER}
 
+echo -e "\e[36mCloning webassets \e[39m"
+if [[ -d webassets ]];
+then
+echo -e "\e[36mwebassets exists \e[39m"
+
+else
+echo -e "\e[36mCloning webassets from Github \e[39m"
+git clone https://github.com/jvde-github/webassets.git
+fi
+
+echo -e "\e[36mUpdating webassets \e[39m"
+cd webassets
+git config --global --add safe.directory ${INSTALL_FOLDER}/webassets
+git fetch --all
+git reset --hard origin/main
+
+
+echo "Entering install folder..."
+cd ${INSTALL_FOLDER}
+
+echo -e "\e[36mCloning AIS-catcher source-code from Github \e[39m"
 if [[ -d AIS-catcher ]];
 then
-echo -e "\e[36mcode exists \e[39m"
+echo -e "\e[36mAIS-catcher code exists \e[39m"
 
 else
 echo -e "\e[36mCloning source-code of AIS-catcher from Github \e[39m"
 git clone https://github.com/jvde-github/AIS-catcher.git
 fi
 
-echo -e "\e[36mUpdating code \e[39m"
+echo -e "\e[36mUpdating AIS-catcher code \e[39m"
 cd AIS-catcher
 git config --global --add safe.directory ${INSTALL_FOLDER}/AIS-catcher
 git fetch --all
