@@ -234,7 +234,7 @@ fi
 echo "Assigning ownership of install folder to user aiscat"
 chown aiscat:aiscat -R ${INSTALL_FOLDER}
 
-systemctl start aiscatcher
+systemctl restart aiscatcher
 
 echo " "
 echo " "
