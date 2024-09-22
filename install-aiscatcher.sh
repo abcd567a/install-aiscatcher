@@ -41,16 +41,18 @@ echo "Writing code to config file aiscatcher.conf"
 -s 2304k
 -p 3  ##Dongle temprature correction, ppm
 -o 4
--S 10120   ## TCP Server listening on port 10120
--u 127.0.0.1 10110  ## UDP connection to local apps
--P 127.0.0.1 10111  ## TCP connection to local apps
-## Map in Browser will be displayed on port number set below
--N 8100 geojson on 
-   CDN /usr/share/aiscatcher/webassets 
+## Map in Browser will be displayed on port number 8100 set in line below
+-N 8100 geojson on CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
    LAT 51.50 LON -1.00 SHARE_LOC ON
 ## Below replace "my-station" by your station's desired name
 -N STATION my-station
+
+-S 5012   ## TCP Server listening on port 5012
+## Un-comment line below if UDP connection to local apps is required (multiple allowed)
+## -u 127.0.0.1 10110  
+## Un-comment line below if TCP connection to local apps is required
+## -P 127.0.0.1 10111
 
 -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
