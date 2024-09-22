@@ -27,10 +27,9 @@ else
 mkdir -p ${INSTALL_FOLDER}
 fi
 
-
-function create-config(){
-echo "Creating config file aiscatcher.conf"
 CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf
+function create-config(){
+echo "Creating config file"
 touch ${CONFIG_FILE}
 chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file aiscatcher.conf"
@@ -45,14 +44,14 @@ echo "Writing code to config file aiscatcher.conf"
 -S 10120  ##TCP Server listening on port 10120
 -u 127.0.0.1 10110  ##UDP connection to local app at port 10110
 ## Map in Browser will be displayed on port number set below
--N 8383 geojson on  
- CDN /usr/share/aiscatcher/webassets 
+-N 8383 geojson on 
+   CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
- LAT 51.50 LON -1.00 SHARE_LOC ON 
+   LAT 51.50 LON -1.00 SHARE_LOC ON
 
 ## Add below url & port number of sites to be fed
 ## one site per line, as in examples below (xxxx is port number)
-## -u data.aishub.net xxxx 
+## -u data.aishub.net xxxx
 ## -u hub.shipxplorer.com xxxx
 
 ## Below replace MY-STATION by your station's desired name
@@ -68,15 +67,24 @@ if [[ -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
    CHOICE=$(whiptail --title "CONFIG" --menu "An existing config file 'aiscatcher.conf' found. What you want to do with it?" 20 70 5 \
    "1" "KEEP existing config file \"aiscatcher.conf\" " \
    "2" "REPLACE existing config file by default config file" 3>&1 1>&2 2>&3);
+
+   if [[ ${CHOICE} == "1" ]]; then
+        echo "Saving default config file as \"default.conf\" ";
+        CONFIG_FILE=${INSTALL_FOLDER}/default.conf;
+        create-config
+   fi
+
    if [[ ${CHOICE} == "2" ]]; then
       if (whiptail --title "Confirmation" --yesno "Are you sure you want to REPLACE your existing config file by default config File?" --defaultno 10 60 5 ); then
         echo "Saving old config file as \"aiscatcher.conf.old\" ";
         cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old;
+        CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf;
         create-config
       fi
    fi
 
 elif [[ ! -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
+   CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf;
    create-config
 fi
 
