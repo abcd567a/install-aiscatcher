@@ -44,19 +44,20 @@ echo "Writing code to config file aiscatcher.conf"
 -S 10120  ##TCP Server listening on port 10120
 -u 127.0.0.1 10110  ##UDP connection to local app at port 10110
 ## Map in Browser will be displayed on port number set below
--N 8383 geojson on 
+-N 8100 geojson on 
    CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
    LAT 51.50 LON -1.00 SHARE_LOC ON
+
+## Below replace MY-STATION by your station's desired name
+-N STATION MY-STATION
+-N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
 ## Add below url & port number of sites to be fed
 ## one site per line, as in examples below (xxxx is port number)
 ## -u data.aishub.net xxxx
 ## -u hub.shipxplorer.com xxxx
 
-## Below replace MY-STATION by your station's desired name
--N STATION MY-STATION
--N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
 EOM
 chmod 644 ${CONFIG_FILE}
@@ -264,7 +265,7 @@ echo " "
 echo -e "\e[01;31m(4) REBOOT RPi ... REBOOT RPi ... REBOOT RPi \e[39m"
 echo " "
 echo -e "\e[01;32m(5) See the Web Interface (Map etc) at\e[39m"
-echo -e "\e[39m        $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8383 \e[39m" "\e[35m(IP-of-PI:8383) \e[39m"
+echo -e "\e[39m        $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8100 \e[39m" "\e[35m(IP-of-PI:8100) \e[39m"
 echo " "
 echo -e "\e[32m(6) Command to see Status\e[39m sudo systemctl status aiscatcher"
 echo -e "\e[32m(7) Command to Restart\e[39m    sudo systemctl restart aiscatcher"
