@@ -83,6 +83,8 @@ if [[ -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
         echo "Saving old config file as \"aiscatcher.conf.old\" ";
         cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old;
         CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf;
+        create-config;
+        CONFIG_FILE=${INSTALL_FOLDER}/default.conf;
         create-config
       fi
    fi
