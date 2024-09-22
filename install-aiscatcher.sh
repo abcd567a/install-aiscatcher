@@ -72,27 +72,21 @@ if [[ -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
    "1" "KEEP existing config file \"aiscatcher.conf\" " \
    "2" "REPLACE existing config file by default config file" 3>&1 1>&2 2>&3);
 
-   if [[ ${CHOICE} == "1" ]]; then
-        echo "Saving default config file as \"default.conf\" ";
-        CONFIG_FILE=${INSTALL_FOLDER}/default.conf;
-        create-config
-   fi
-
    if [[ ${CHOICE} == "2" ]]; then
       if (whiptail --title "Confirmation" --yesno "Are you sure you want to REPLACE your existing config file by default config File?" --defaultno 10 60 5 ); then
         echo "Saving old config file as \"aiscatcher.conf.old\" ";
         cp ${INSTALL_FOLDER}/aiscatcher.conf ${INSTALL_FOLDER}/aiscatcher.conf.old;
-        CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf;
         create-config;
-        CONFIG_FILE=${INSTALL_FOLDER}/default.conf;
-        create-config
       fi
    fi
 
 elif [[ ! -f "${INSTALL_FOLDER}/aiscatcher.conf" ]]; then
-   CONFIG_FILE=${INSTALL_FOLDER}/aiscatcher.conf;
    create-config
 fi
+
+CONFIG_FILE=${INSTALL_FOLDER}/default.conf;
+create-config;
+
 
 echo "Creating startup script file start-ais.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/start-ais.sh
