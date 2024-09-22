@@ -47,10 +47,10 @@ echo "Writing code to config file aiscatcher.conf"
    LAT 51.50 LON -1.00 SHARE_LOC ON
 ## Below replace "my-station" by your station's desired name
 -N STATION my-station
-
--S 5012   ## TCP Server listening on port 5012
+## TCP Server listening on port 5012
+-S 5012
 ## Un-comment line below if UDP connection to local apps is required (multiple allowed)
-## -u 127.0.0.1 10110  
+## -u 127.0.0.1 10110
 ## Un-comment line below if TCP connection to local apps is required
 ## -P 127.0.0.1 10111
 
