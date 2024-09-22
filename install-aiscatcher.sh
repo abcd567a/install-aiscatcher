@@ -252,7 +252,7 @@ echo -e "\e[33m    (b) Change 3 in \"-p 3\" to the actual ppm correction figure 
 echo -e "\e[33m    (c) Change 38.6 in \"-gr TUNER 38.6 RTLAGC off\" to desired Gain of dongle\e[39m"
 echo -e "\e[33m    (d) In following line replace 51.50 and 1.00 by values at your location:\e[39m"
 echo -e "\e[35m             LAT 51.50 LON -1.00 SHARE_LOC ON \e[39m"
-echo -e "\e[33m    (e) In following line replace "my-station" by station name you desire:\e[39m"
+echo -e "\e[33m    (e) In following line replace \"my-station\" by station name you desire:\e[39m"
 echo -e "\e[35m             -N STATION my-station \e[39m"
 echo -e "\e[33m    (f) For each Site you want to feed AIS data, add a new line as follows:\e[39m"
 echo -e "\e[35m          -u [URL or IP of Site] [Port Number of Site]  \e[39m"
