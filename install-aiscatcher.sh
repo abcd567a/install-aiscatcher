@@ -41,16 +41,17 @@ echo "Writing code to config file aiscatcher.conf"
 -s 2304k
 -p 3  ##Dongle temprature correction, ppm
 -o 4
--S 10120  ##TCP Server listening on port 10120
--u 127.0.0.1 10110  ##UDP connection to local app at port 10110
+-S 10120   ## TCP Server listening on port 10120
+-u 127.0.0.1 10110  ## UDP connection to local apps
+-P 127.0.0.1 10111  ## TCP connection to local apps
 ## Map in Browser will be displayed on port number set below
 -N 8100 geojson on 
    CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
    LAT 51.50 LON -1.00 SHARE_LOC ON
+## Below replace "my-station" by your station's desired name
+-N STATION my-station
 
-## Below replace MY-STATION by your station's desired name
--N STATION MY-STATION
 -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
 ## Add below url & port number of sites to be fed
@@ -243,30 +244,26 @@ echo -e "\e[32m=======================\e[39m"
 echo -e "\e[32mPLEASE DO FOLLOWING:\e[39m"
 echo -e "\e[32m=======================\e[39m"
 
-echo -e "\e[33m(1) If on RPi you have installed AIS Dispatcher or OpenCPN,\e[39m"
-echo -e "\e[33m    it should be configured to use UDP Port 10110, IP 127.0.0.1 OR 0.0.0.0\e[39m"
-
-echo -e "\e[33m(2) Open file aiscatcher.conf by following command:\e[39m"
+echo -e "\e[33m(1) Open file aiscatcher.conf by following command:\e[39m"
 echo -e "\e[39m       sudo nano "${INSTALL_FOLDER}"/aiscatcher.conf \e[39m"
-echo -e "\e[33m(3) In above file:\e[39m"
+echo -e "\e[33m(2) In above file:\e[39m"
 echo -e "\e[33m    (a) Change 00000162 in \"-d 00000162\" to actual Serial Number of AIS dongle\e[39m"
 echo -e "\e[33m    (b) Change 3 in \"-p 3\" to the actual ppm correction figure of dongle\e[39m"
 echo -e "\e[33m    (c) Change 38.6 in \"-gr TUNER 38.6 RTLAGC off\" to desired Gain of dongle\e[39m"
-echo -e "\e[33m    (d) Add following line and replace xx.xxx and yy.yyy by actual values:\e[39m"
-echo -e "\e[35m          -N STATION MyStation LAT xx.xxx LON yy.yyy \e[39m"
-echo -e "\e[33m    (e) For each Site you want to feed AIS data, add a new line as follows:\e[39m"
+echo -e "\e[33m    (d) In following line replace 51.50 and 1.00 by values at your location:\e[39m"
+echo -e "\e[35m             LAT 51.50 LON -1.00 SHARE_LOC ON \e[39m"
+echo -e "\e[33m    (e) In following line replace "my-station" by station name you desire:\e[39m"
+echo -e "\e[35m             -N STATION my-station \e[39m"
+echo -e "\e[33m    (f) For each Site you want to feed AIS data, add a new line as follows:\e[39m"
 echo -e "\e[35m          -u [URL or IP of Site] [Port Number of Site]  \e[39m"
-echo -e "\e[33m    (f) Save (Ctrl+o) and  Close (Ctrl+x) file aiscatcher.conf \e[39m"
 echo " "
 echo -e "\e[01;31mIMPORTANT: \e[32mIf you are \e[01;31mUpgrading or Reinstalling,\e[32myour old config file & pluin folder are saved as \e[39m"
 echo -e "\e[39m       "${INSTALL_FOLDER}/aiscatcher.conf.old" \e[39m"
 echo -e "\e[39m       "${INSTALL_FOLDER}/my-plugins.old" \e[39m"
 echo " "
-echo -e "\e[01;31m(4) REBOOT RPi ... REBOOT RPi ... REBOOT RPi \e[39m"
-echo " "
-echo -e "\e[01;32m(5) See the Web Interface (Map etc) at\e[39m"
+echo -e "\e[01;32m(3) See the Web Interface (Map etc) at\e[39m"
 echo -e "\e[39m        $(ip route | grep -m1 -o -P 'src \K[0-9,.]*'):8100 \e[39m" "\e[35m(IP-of-PI:8100) \e[39m"
 echo " "
-echo -e "\e[32m(6) Command to see Status\e[39m sudo systemctl status aiscatcher"
-echo -e "\e[32m(7) Command to Restart\e[39m    sudo systemctl restart aiscatcher"
+echo -e "\e[32m(4) Command to see Status\e[39m sudo systemctl status aiscatcher"
+echo -e "\e[32m(5) Command to Restart\e[39m    sudo systemctl restart aiscatcher"
 
