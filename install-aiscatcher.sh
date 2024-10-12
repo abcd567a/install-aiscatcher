@@ -54,7 +54,7 @@ echo "Writing code to config file aiscatcher.conf"
 ## Un-comment line below if TCP connection to local apps is required
 ## -P 127.0.0.1 10111
 
--N FILE /usr/share/aiscatcher/my-stats/stat.bin BACKUP 60
+-N FILE /usr/share/aiscatcher/stat.bin BACKUP 60
 -N PLUGIN_DIR /usr/share/aiscatcher/my-plugins
 
 ## Add below url & port number of sites to be fed
