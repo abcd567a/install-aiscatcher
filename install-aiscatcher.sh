@@ -42,7 +42,7 @@ echo "Writing code to config file aiscatcher.conf"
 -p 3  ##Dongle temprature correction, ppm
 -o 4
 ## Map in Browser will be displayed on port number 8100 set in line below
--N 8100 geojson on CDN /usr/share/aiscatcher/webassets 
+-N 8100 geojson on REALTIME on CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
    LAT 51.50 LON -1.00 SHARE_LOC ON
 ## Below replace "my-station" by your station's desired name
