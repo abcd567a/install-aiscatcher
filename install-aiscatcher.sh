@@ -128,6 +128,7 @@ User=aiscat
 RuntimeDirectory=aiscatcher
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${INSTALL_FOLDER}/start-ais.sh
+ExecStop=/bin/kill -TERM $MAINPID
 SyslogIdentifier=aiscatcher
 Type=simple
 Restart=always
