@@ -1,5 +1,7 @@
 #!/bin/bash
 
+apt update
+
 set -e
 trap 'echo "[ERROR] Error in line $LINENO when executing: $BASH_COMMAND"' ERR
 
