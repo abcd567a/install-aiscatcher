@@ -36,6 +36,13 @@ touch ${CONFIG_FILE}
 chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file aiscatcher.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
+#############################################################
+##                                                         ##
+##  To list all config parameters, use following command:  ##
+##  sudo AIS-catcher -help                                 ##
+##                                                         ##
+#############################################################
+
 -d 00000162  ##Dongle serial Number
 -v 10
 -M DT
