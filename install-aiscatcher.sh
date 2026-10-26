@@ -49,7 +49,7 @@ echo "Writing code to config file aiscatcher.conf"
 -gr TUNER 38.6 RTLAGC off  ##Dongle gain
 -s 2304k
 -p 3  ##Dongle temprature correction, ppm
--o 4
+-o 4  ##Instead of 4 use 0 for reduced logs and console display
 ## Map in Browser will be displayed on port number 8100 set in line below
 -N 8100 geojson on REALTIME on CDN /usr/share/aiscatcher/webassets 
 ## Replace below 51.50 and -1.00 by actual values at your location
@@ -137,7 +137,6 @@ User=aiscat
 RuntimeDirectory=aiscatcher
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${INSTALL_FOLDER}/start-ais.sh
-ExecStop=/bin/kill -TERM $MAINPID
 SyslogIdentifier=aiscatcher
 Type=simple
 Restart=always
